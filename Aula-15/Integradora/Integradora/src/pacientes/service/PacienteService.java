@@ -1,17 +1,32 @@
 package pacientes.service;
 
 import pacientes.dao.IDao;
+import pacientes.dao.impl.PacienteDaoImpl;
 import pacientes.model.Paciente;
+
+import java.util.List;
 
 public class PacienteService {
 
-    private IDao<Paciente> pacienteIDao;
+    PacienteDaoImpl pacienteDaoImpl;
 
-    public PacienteService(IDao<Paciente> pacienteIDao) {
-        this.pacienteIDao = pacienteIDao;
+    public PacienteService() {
+        this.pacienteDaoImpl = new PacienteDaoImpl();
     }
 
-    public Paciente salvar(Paciente paciente) {
-        return pacienteIDao.salvar(paciente);
+    public Paciente savePaciente(Paciente paciente) {
+        return pacienteDaoImpl.salvar(paciente);
+    }
+
+    public List<Paciente> localizarTodosPacientes() {
+        return pacienteDaoImpl.localizarTodos();
+    }
+
+    public void deleteById(int id) {
+        pacienteDaoImpl.excluirPorId(id);
+    }
+
+    public Paciente encontrarPorId(int id) {
+        return pacienteDaoImpl.encontrarPorId(id);
     }
 }

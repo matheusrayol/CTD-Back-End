@@ -1,10 +1,13 @@
 package pacientes.dao;
 
-public interface IDao<T> {
+import pacientes.model.Paciente;
 
+import java.util.List;
+
+public interface IDao<T> {
     public T salvar(T t);
-    public T buscar(T t);
-    public T atualizar(T t);
-    public T excluir(T t);
+    public List<T> localizarTodos();
+    public void excluirPorId(int id);
+    public Paciente encontrarPorId(int id);
 
 }
